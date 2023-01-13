@@ -19,7 +19,6 @@ function App() {
     //channel is what we push into
     const channel = pusher.subscribe("messages");
     channel.bind("inserted", function (newMessage) {
-      alert(JSON.stringify(newMessage));
       setMessages([...messages, newMessage]);
     });
 

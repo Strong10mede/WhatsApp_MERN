@@ -4,7 +4,7 @@ import { Avatar, IconButton } from "@mui/material";
 import { AttachFile, MoreVert, SearchOutlined } from "@mui/icons-material";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
-import axios from "axios";
+import axios from "./axios";
 function Chat({ messages }) {
   const [input, setInput] = useState("");
   const sendMessage = async (e) => {
@@ -13,7 +13,7 @@ function Chat({ messages }) {
       message: input,
       name: "Demo App",
       timestamp: new Date().toUTCString(),
-      receiver: false,
+      received: false,
     });
     setInput("");
   };
@@ -50,11 +50,6 @@ function Chat({ messages }) {
             <span className="chat__timestamp">{message.timestamp}</span>
           </p>
         ))}
-        <p className="chat__message">
-          <span className="chat__name">Sonny</span>
-          This is a message
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
       </div>
 
       <div className="chat__footer">
