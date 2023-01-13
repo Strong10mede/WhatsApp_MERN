@@ -4,9 +4,19 @@ import { Avatar, IconButton } from "@mui/material";
 import { AttachFile, MoreVert, SearchOutlined } from "@mui/icons-material";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import MicIcon from "@mui/icons-material/Mic";
-function Chat() {
+import axios from "axios";
+function Chat({ messages }) {
   const [input, setInput] = useState("");
-  const sendMessage = () => {};
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    await axios.post("/messages/new", {
+      message: input,
+      name: "Demo App",
+      timestamp: new Date().toUTCString(),
+      receiver: false,
+    });
+    setInput("");
+  };
   return (
     <div className="chat">
       <div className="chat__header">
@@ -31,11 +41,15 @@ function Chat() {
       </div>
 
       <div className="chat__body">
-        <p className="chat__message chat__reciever">
-          <span className="chat__name">Sonny</span>
-          This is a message
-          <span className="chat__timestamp">{new Date().toUTCString()}</span>
-        </p>
+        {messages.map((message) => (
+          <p
+            className={`chat__message ${message.recevied && "chat__reciever"}`}
+          >
+            <span className="chat__name">{message.name}</span>
+            {message.message}
+            <span className="chat__timestamp">{message.timestamp}</span>
+          </p>
+        ))}
         <p className="chat__message">
           <span className="chat__name">Sonny</span>
           This is a message
