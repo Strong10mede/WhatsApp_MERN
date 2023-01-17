@@ -7,4 +7,4 @@ Pusher-js is also used here for real time database renderingof database on any c
 
 ## WhatsApp Backend
 Backend is build with Node.js for backend and Express.js for server services
-Pusher is used for binding into our mongoDb for realtime changes
+Pusher is used for binding into our mongoDb for realtime changesPusher for realtime changes of mongodb updates on frontend
